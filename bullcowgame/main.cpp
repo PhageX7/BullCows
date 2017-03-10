@@ -6,6 +6,7 @@ void PrintIntro();
 string GetGuess();
 void PrintGuessMessage(string);
 void PlayGame();
+bool AskToPLayAgain();
 
 int main() {
 	
@@ -15,6 +16,15 @@ int main() {
 	// Starts the gane 
 	PlayGame();
 	
+	// Asks player if they choose to play again
+	bool Replay = AskToPLayAgain();
+
+	// Keeps looping until the player quits
+	while (Replay == true) {
+		PlayGame();
+		Replay = AskToPLayAgain();
+	}
+
 	return 0; // Exits game program.
 }
 
@@ -54,4 +64,20 @@ void PlayGame() {
 		PrintGuessMessage(GetGuess());
 	}
 	cout << endl;
+}
+
+bool AskToPLayAgain() {
+	// Gets player response and inputs from user entry
+	string Response = "";
+	cout << "Do you want to play again? Press 'y' to continue.\n";
+	getline(cin, Response);
+	
+	// Checks the first char in the Response string and then returns true or false if not found		
+	if (Response[0] == 'y' || Response[0] == 'Y') {
+		return true;
+	}
+	else {
+		cout << "\nNow exiting game.\n";
+		return false;
+	}	
 }
