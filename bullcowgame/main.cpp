@@ -10,20 +10,15 @@ bool AskToPLayAgain();
 
 int main() {
 	
-	// Print welcome message 
-	PrintIntro();
-	
-	// Starts the gane 
-	PlayGame();
-	
-	// Asks player if they choose to play again
-	bool Replay = AskToPLayAgain();
+	bool bPlayAgain = false;
 
-	// Keeps looping until the player quits
-	while (Replay == true) {
+	do {// Print welcome message 
+		PrintIntro();
+		// Starts the gane 
 		PlayGame();
-		Replay = AskToPLayAgain();
-	}
+		// Asks player if they choose to play again
+		bool bPlayAgain = AskToPLayAgain();
+	} while (bPlayAgain);
 
 	return 0; // Exits game program.
 }
@@ -69,7 +64,7 @@ void PlayGame() {
 bool AskToPLayAgain() {
 	// Gets player response and inputs from user entry
 	string Response = "";
-	cout << "Do you want to play again? Press 'y' to continue.\n";
+	cout << "Do you want to play again? (y/n).\n";
 	getline(cin, Response);
 	
 	// Checks the first char in the Response string and then returns true or false if not found		
